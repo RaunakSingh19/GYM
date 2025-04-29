@@ -1,0 +1,160 @@
+/* 🔹 General Styles */
+.services-container {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(to right, #f9f9f9, #ffffff);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 🏋️‍♂️ Heading Styles */
+.services-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.services-subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* 🏆 Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+/* 🎨 Service Card Styling */
+.service-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 📷 Image Handling */
+.service-image-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-image {
+  transform: scale(1.1);
+}
+
+/* 📌 Content Styling */
+.service-content {
+  padding: 20px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.service-content h2 {
+  font-size: 24px;
+  color: #d90368;
+  margin-bottom: 10px;
+}
+
+.service-description {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* 🎯 Service Details */
+.service-details {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.service-details p {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+/* 📢 Call-To-Action Button */
+.detail-button {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #d90368;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+  text-align: center;
+}
+
+.detail-button:hover {
+  background-color: #a9024e;
+  transform: scale(1.05);
+}
+
+/* 🔥 Join Now Button */
+.join-button-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.join-now-button {
+  background-color: #d90368;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.join-now-button:hover {
+  background-color: #a9024e;
+  transform: scale(1.05);
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    margin-bottom: 20px;
+  }
+
+  .service-image-container {
+    height: 200px;
+  }
+}

@@ -1,0 +1,88 @@
+/* General Styles */
+.membership-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: #f3f4f6; /* Light gray background */
+    min-height: 100vh;
+  }
+  
+  .membership-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  /* Grid Layout */
+  .membership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  /* Card Styles */
+  .membership-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid #ddd;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .membership-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .membership-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .membership-price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .membership-duration {
+    color: gray;
+    margin-top: 5px;
+  }
+  
+  /* Benefits List */
+  .benefits-list {
+    margin-top: 15px;
+    padding: 0;
+    list-style-type: none;
+    text-align: left;
+  }
+  
+  .benefits-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+  }
+  
+  /* Join Now Button */
+  .join-button {
+    margin-top: 30px;
+    background-color: #d81b60;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .join-button:hover {
+    background-color: #b01750;
+  }
+  

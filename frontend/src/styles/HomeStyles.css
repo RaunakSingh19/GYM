@@ -1,0 +1,155 @@
+/* ========== HOME PAGE STYLES ========== */
+
+/* Container */
+.home-container {
+  height: 100vh;
+  background-image: url("../assets/images/abc.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem;
+  color: white;
+}
+
+/* Background Overlay */
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Content Box */
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+/* Title */
+.homepage-title {
+  font-size: 4.6rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* Description */
+.homepage-description {
+  font-size: 2rem;
+  max-width: 600px;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.homepage-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* General Button Styling */
+.navbar-button {
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Primary Button */
+.primary-button {
+  height: 80px;
+  width: 200px;
+  
+  background: linear-gradient(135deg, #d81b60, #ff5733);
+  color: white;
+  border: none;
+  box-shadow: 0px 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+.primary-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #ff5733, #d81b60);
+  box-shadow: 0px 6px 15px rgba(231, 76, 60, 0.5);
+}
+
+/* Secondary Button */
+.secondary-button {
+  height: 80px;
+  width: 200px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.secondary-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  background-color: white;
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+/* Link Styling */
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: white;
+}
+
+/* ========== RESPONSIVENESS ========== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .homepage-title {
+    font-size: 3.8rem;
+  }
+  .homepage-description {
+    font-size: 1.6rem;
+  }
+  .navbar-button {
+    font-size: 0.9rem;
+    padding: 0.9rem 1.8rem;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .homepage-title {
+    font-size: 3rem;
+  }
+  .homepage-description {
+    font-size: 1.4rem;
+    line-height: 1.6;
+  }
+  .homepage-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Small Screens */
+@media (max-width: 480px) {
+  .homepage-title {
+    font-size: 2.5rem;
+  }
+  .homepage-description {
+    font-size: 1.2rem;
+  }
+  .navbar-button {
+    font-size: 0.8rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
