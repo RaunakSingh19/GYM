@@ -21,6 +21,7 @@ connectDB();
 // app.use(express.json({ extended: false }));
 app.use(cors({
   origin: "https://gym-rose-alpha.vercel.app", // ✅ replace this
+   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true // optional: only if you’re using cookies or sessions
 }));
 app.use(express.json()); 
@@ -82,7 +83,7 @@ app.get("/api/registrations/all", async (req, res) => {
   };
   
   app.use(cors(corsOptions));
-
+  app.use(express.json());
   
 
 const PORT = process.env.PORT || 5000;
