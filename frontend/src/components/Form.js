@@ -207,7 +207,7 @@ import {
   Alert
 } from '@mui/material';
 
-const RegistrationForm = () => {
+const Form = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -381,4 +381,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default Form;
