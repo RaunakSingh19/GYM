@@ -44,7 +44,7 @@ const LoginDetailsAdmin = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('/api/admin/users');
+      const res = await axios.get('https://gym-3l8v.onrender.com/api/admin/users');
       setUsers(res.data);
     } catch (err) {
       console.error(err);
@@ -54,7 +54,7 @@ const LoginDetailsAdmin = () => {
   const handleDeleteUser = async () => {
     if (!selectedUser) return;
     try {
-      await axios.delete(`/api/admin/users/${selectedUser}`);
+      await axios.delete(`https://gym-3l8v.onrender.com/api/admin/users/${selectedUser}`);
       setUsers(users.filter(user => user._id !== selectedUser));
       setOpenDialog(false);
     } catch (err) {

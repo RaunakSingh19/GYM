@@ -35,7 +35,7 @@ const FeedbackForm = () => {
     setError('');
     
     try {
-      await axios.post('/api/feedback', formData);
+      await axios.post('https://gym-3l8v.onrender.com/api/feedback', formData);
       setSuccess(true);
       setFormData({ name: '', location: '', feedback: '', phone: '' });
     } catch (err) {

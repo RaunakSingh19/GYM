@@ -162,7 +162,7 @@ const ExercisesHp = () => {
 
   const fetchExercises = async () => {
     try {
-      const res = await axios.get("/api/exercises");
+      const res = await axios.get("https://gym-3l8v.onrender.com/api/exercises");
       setExercises(res.data);
     } catch (error) {
       console.error("Error fetching exercises:", error);
@@ -171,7 +171,7 @@ const ExercisesHp = () => {
 
   const deleteExercise = async (id) => {
     try {
-      await axios.delete(`/api/exercises/${id}`);
+      await axios.delete(`https://gym-3l8v.onrender.com/api/exercises/${id}`);
       fetchExercises();
     } catch (error) {
       console.error("Error deleting exercise:", error);

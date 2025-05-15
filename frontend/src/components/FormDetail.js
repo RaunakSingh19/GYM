@@ -7,7 +7,7 @@ const FormDataPage = () => {
   useEffect(() => {
     const fetchRegistrations = async () => {
       try {
-        const response = await axios.get("/api/registrations");
+        const response = await axios.get("https://gym-3l8v.onrender.com/api/registrations");
         setRegistrations(response.data);
       } catch (error) {
         console.error("Error fetching registrations:", error);

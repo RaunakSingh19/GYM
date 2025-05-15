@@ -8,7 +8,7 @@ const Users = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('/api/admin/users');
+        const res = await axios.get('https://gym-3l8v.onrender.com/api/admin/users');
         setUsers(res.data);
       } catch (err) {
         console.error(err);

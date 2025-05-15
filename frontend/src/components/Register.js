@@ -98,7 +98,7 @@ const Register = () => {
       const config = { headers: { "Content-Type": "application/json" } };
       const body = JSON.stringify(newUser);
 
-      await axios.post("/api/auth/register", body, config);
+      await axios.post("https://gym-3l8v.onrender.com/api/auth/register", body, config);
       setLoading(false);
       navigate("/");
     } catch (err) {

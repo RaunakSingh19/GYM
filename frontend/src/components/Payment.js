@@ -224,7 +224,7 @@ const PaymentForm = () => {
     }
 
     try {
-      const response = await axios.post("/api/payment", formData);
+      const response = await axios.post("https://gym-3l8v.onrender.com/api/payment", formData);
 
       if (response.status === 201) {
         alert("Payment Successful!");
