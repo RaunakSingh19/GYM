@@ -140,7 +140,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://gym-3l8v.onrender.com/api/register", formData);
+      await axios.post("/api/register", formData);
       
       // ✅ Redirect to payment page AFTER successful registration
       navigate("/payment", { state: { formData } });
