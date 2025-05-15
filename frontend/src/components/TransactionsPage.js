@@ -24,7 +24,7 @@ const Transactions = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/transactions");
+        const response = await axios.get("/api/transactions");
         setTransactions(response.data);
       } catch (error) {
         console.error("Error fetching transactions:", error);

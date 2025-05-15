@@ -34,7 +34,7 @@ const PurchaseShow = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/registrations/all");
+        const { data } = await axios.get("/api/registrations/all");
         setData(data);
         calculateTotalSales(data);
       } catch (err) {

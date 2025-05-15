@@ -162,7 +162,7 @@ const ExercisesHp = () => {
 
   const fetchExercises = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/exercises");
+      const res = await axios.get("/api/exercises");
       setExercises(res.data);
     } catch (error) {
       console.error("Error fetching exercises:", error);
@@ -171,7 +171,7 @@ const ExercisesHp = () => {
 
   const deleteExercise = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/exercises/${id}`);
+      await axios.delete(`/api/exercises/${id}`);
       fetchExercises();
     } catch (error) {
       console.error("Error deleting exercise:", error);
@@ -210,7 +210,7 @@ const ExercisesHp = () => {
                 <CardMedia
                   component="img"
                   height="240"
-                  image={`http://localhost:5000/${exercise.image}`}
+                  image={`/${exercise.image}`}
                   alt={exercise.name}
                   className="exercise-image"
                 />

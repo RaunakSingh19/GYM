@@ -41,7 +41,7 @@ const AdminFeedback = () => {
       if (search.name) params.append('name', search.name);
       if (search.location) params.append('location', search.location);
       
-      const response = await axios.get(`http://localhost:5000/api/feedback?${params.toString()}`);
+      const response = await axios.get(`/api/feedback?${params.toString()}`);
       setFeedbacks(response.data);
     } catch (err) {
       console.error('Error fetching feedbacks:', err);

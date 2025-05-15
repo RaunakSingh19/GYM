@@ -140,7 +140,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/register", formData);
+      await axios.post("/register", formData);
       
       // ✅ Redirect to payment page AFTER successful registration
       navigate("/payment", { state: { formData } });

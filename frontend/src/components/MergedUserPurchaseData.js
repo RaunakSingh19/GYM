@@ -8,8 +8,8 @@ const MergedUserPurchaseData = () => {
     const fetchAndMergeData = async () => {
       try {
         const [transactionsRes, purchasesRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/transactions"),
-          axios.get("http://localhost:5000/api/registrations/all"),
+          axios.get("/api/transactions"),
+          axios.get("/api/registrations/all"),
         ]);
 
         const transactions = transactionsRes.data;

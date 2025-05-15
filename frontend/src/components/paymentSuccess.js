@@ -22,8 +22,8 @@ const PaymentSuccess = () => {
   useEffect(() => {
     const fetchReceipt = async () => {
       try {
-        const regRes = await axios.get("http://localhost:5000/api/registrations/all");
-        const transRes = await axios.get("http://localhost:5000/api/transactions");
+        const regRes = await axios.get("/api/registrations/all");
+        const transRes = await axios.get("/api/transactions");
 
         // Assuming most recent transaction is the latest one
         const latestReg = regRes.data[regRes.data.length - 1];

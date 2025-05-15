@@ -98,7 +98,7 @@ const Register = () => {
       const config = { headers: { "Content-Type": "application/json" } };
       const body = JSON.stringify(newUser);
 
-      await axios.post("http://localhost:5000/api/auth/register", body, config);
+      await axios.post("/api/auth/register", body, config);
       setLoading(false);
       navigate("/");
     } catch (err) {

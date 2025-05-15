@@ -35,7 +35,7 @@ const FeedbackForm = () => {
     setError('');
     
     try {
-      await axios.post('http://localhost:5000/api/feedback', formData);
+      await axios.post('/api/feedback', formData);
       setSuccess(true);
       setFormData({ name: '', location: '', feedback: '', phone: '' });
     } catch (err) {

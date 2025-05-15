@@ -74,7 +74,7 @@ const Login = () => {
       const config = { headers: { "Content-Type": "application/json" } };
       const body = JSON.stringify(user);
 
-      await axios.post("http://localhost:5000/api/auth/login", body, config);
+      await axios.post("/api/auth/login", body, config);
       setLoading(false);
       role === "admin" ? navigate("/admin") : navigate("/client");
     } catch (err) {
