@@ -19,7 +19,10 @@ connectDB();
 
 // Init Middleware
 // app.use(express.json({ extended: false }));
-app.use(cors());
+app.use(cors({
+  origin: "https://gym-rose-alpha.vercel.app", // ✅ replace this
+  credentials: true // optional: only if you’re using cookies or sessions
+}));
 app.use(express.json()); 
 
 // Define Routes
