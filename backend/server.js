@@ -109,9 +109,24 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
+
+const allowedOrigins = [
+  // "http://localhost:3000", // for development
+  "https://gym-rose-alpha.vercel.app", // your deployed frontend
+];
 // Middleware
+// app.use(cors({
+//   origin: "https://gym-rose-alpha.vercel.app", // ✅ Replace with frontend origin
+// }));
 app.use(cors({
-  origin: "https://gym-rose-alpha.vercel.app", // ✅ Replace with frontend origin
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
 app.use(express.json());
 
