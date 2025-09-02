@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // CORS Configuration (Allow requests from localhost during development)
-const allowedOrigins = ['http://localhost:3000'];  // Add other frontend URLs in production
+const allowedOrigins = ['http://localhost:3000','https://gym-rose-alpha.vercel.app/'];  // Add other frontend URLs in production
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
