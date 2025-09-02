@@ -1,7 +1,7 @@
 // routes/feedbackRoutes.js
 const express = require('express');
 const router = express.Router();
-const Feedback = require('../models/Feedback');
+const Feedback = require('../models/feedback');
 
 // POST: Submit Feedback
 router.post('/', async (req, res) => {
