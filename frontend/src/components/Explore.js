@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import Footer from './Footer';
-import TicTacToe from './TicTacToe';
+// import Footer from './Footer';
+// import TicTacToe from './TicTacToe';
 
 // Helper function to import all gifs from a folder
 const importAll = (r) => r.keys().map(r);
@@ -103,13 +103,8 @@ const Explore = () => {
         <GifSection title="Shoulders - Z" gifs={zShouldersGifs} showAll={states.zShoulders} setShowAll={() => toggleState('zShoulders')} />
       </section>
 
-      {/* Tic Tac Toe
-      <section style={{ marginTop: '60px' }}>
-        <h2>Play Tic Tac Toe</h2>
-        <TicTacToe />
-      </section> */}
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

@@ -34,7 +34,7 @@ const BMICalculator = () => {
   };
 
   return (
-    <div className="bmi-app">
+    <div className="bmi-app" style={{marginTop: "50px"}}>
       <div className="bmi-container">
         <div className="bmi-header">
           <h1>BMI Calculator</h1>

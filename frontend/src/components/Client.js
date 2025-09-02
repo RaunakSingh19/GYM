@@ -1,25 +1,3 @@
-// import React from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import '../styles/clientStyles.css';
-
-// const Client = () => {
-//   const navigate = useNavigate();
-
-//   const handleRedirect = () => {
-//     navigate('/home');
-//   };
-
-//   return (
-//     <div className="client-container">
-//       <h1>Hello, welcome</h1>
-//       <p>You have logged in successfully.</p>
-//       <p>Let's go to the home page.</p>
-//       <button onClick={handleRedirect}>Go to Home</button>
-//     </div>
-//   );
-// };
-
-// export default Client;
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/clientStyles.css';

@@ -1,15 +1,13 @@
-import React from "react";
-// import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/images/gym-background.png"; // Import the image
-import "../styles/HomeStyles.css"; // Import custom CSS
+import "../styles/HomeStyles.css"; 
 
 const HomePage = () => {
   
   const navigate = useNavigate();
 
   const handleJoinNow = () => {
-    navigate("/form");
+    navigate("/fitnessclubBlog");
   };
   const handleLearnMore = () => {
     navigate("/learnmore");
@@ -61,7 +59,7 @@ const HomePage = () => {
         <button className="primary-button" 
         
         onClick={handleJoinNow}>
-            Join Now
+            Read More
           </button>
           <button className="secondary-button" onClick={handleLearnMore}>
             Learn More

@@ -46,7 +46,7 @@ const ToolsSection = () => {
           background: "linear-gradient(90deg, #3a7bd5, #d81b60)",
           WebkitBackgroundClip: "text",
           backgroundClip: "text",
-          color: "transparent",
+          // color: "transparent",
         }}>
           Fitness Tools
         </Typography>

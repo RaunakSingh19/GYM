@@ -1,26 +1,21 @@
-import React from 'react';
 import { Box } from '@mui/material';
 import HomePage from './Homepage';
 import CoachesPage from './CoachesPage';
 import Exersises from './Exersises';
-import Footer from './Footer';
-import Navbar from './Navbar';
-import ExercisesHP from './ExersiseHP';
 import ToolsSection from './ToolsSection';
-// import BMICalculator from './BMIcalculator';
 import Program from './program'
-
+import NewsletterSection from './NewsletterSection';
+import FeedbackCards from './FeedbackCards';
 const Home = () => {
   return (
-    <Box>
-      <Navbar/>
+    <Box sx={{ marginTop: "80px" }}>
       <HomePage />
-      <CoachesPage />
       <Exersises />
-      <ExercisesHP />
       <ToolsSection />
+      < NewsletterSection/>
+       <CoachesPage />
       <Program />
-      <Footer />
+      <FeedbackCards/>
     </Box>
   );
 };

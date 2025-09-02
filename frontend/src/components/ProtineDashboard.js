@@ -15,7 +15,6 @@ import {
   InputAdornment,
   Grid,
   Card,
-  CardContent
 } from "@mui/material";
 import { Search, Whatshot, TrendingUp, BatteryFull, Scale } from "@mui/icons-material";
 
@@ -68,7 +67,7 @@ const ProteinDashboard = () => {
   return (
     <Box sx={{ 
       py: 6, 
-      background: "linear-gradient(to bottom, #f8f9fa, #ffffff)"
+      background: "linear-gradient(to bottom, #f8f9fa, #ffffff)",marginTop: "80px"
     }}>
       <Container maxWidth="lg">
         <Box sx={{ textAlign: "center", mb: 6 }}>

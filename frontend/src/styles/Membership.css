@@ -1,88 +1,138 @@
-/* General Styles */
+/* Container Styles */
 .membership-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
-    background-color: #f3f4f6; /* Light gray background */
-    min-height: 100vh;
-  }
-  
-  .membership-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
-  
-  /* Grid Layout */
-  .membership-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    width: 100%;
-    max-width: 1200px;
-  }
-  
-  /* Card Styles */
-  .membership-card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    border: 1px solid #ddd;
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .membership-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .membership-card h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-  
-  .membership-price {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  .membership-duration {
-    color: gray;
-    margin-top: 5px;
-  }
-  
-  /* Benefits List */
-  .benefits-list {
-    margin-top: 15px;
-    padding: 0;
-    list-style-type: none;
-    text-align: left;
-  }
-  
-  .benefits-list li {
-    padding: 10px 15px;
-    border-bottom: 1px solid #ddd;
-    color: #333;
-  }
-  
-  /* Join Now Button */
-  .join-button {
-    margin-top: 30px;
-    background-color: #d81b60;
-    color: white;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    transition: background 0.3s ease-in-out;
-  }
-  
-  .join-button:hover {
-    background-color: #b01750;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f3f4f6;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.membership-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Duration Toggle Buttons */
+.duration-toggle {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.duration-button {
+  padding: 10px 20px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.duration-button.active {
+  background-color: #d81b60;
+  color: white;
+}
+
+/* Grid Layout */
+.membership-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Card Styles */
+.membership-card {
+  background: white;
+  padding: 25px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  border: 1px solid #ddd;
+  transition: transform 0.3s ease;
+}
+
+.membership-card:hover {
+  transform: translateY(-5px);
+}
+
+.membership-card h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.membership-price {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #d81b60;
+}
+
+.membership-duration {
+  color: gray;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+/* Benefits List */
+.benefits-list {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.benefits-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+/* Join Button */
+.join-button {
+  margin-top: 40px;
+  background-color: #d81b60;
+  color: white;
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.join-button:hover {
+  background-color: #b01750;
+}
+.duration-toggle {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.duration-button {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  background-color: #eee;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.duration-button.active {
+  background-color: #d81b60;
+  color: white;
+}

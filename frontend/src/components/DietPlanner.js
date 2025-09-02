@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Typography, Grid, TextField,Container, Button, Select, MenuItem, FormControl, InputLabel, Card, CardContent, Divider } from '@mui/material';
-import { Calculate, Restaurant, FitnessCenter, Nightlight, Work } from '@mui/icons-material';
+import { Box, Typography, Grid, TextField,Container, Button, Select, MenuItem, FormControl, InputLabel, Card, Divider } from '@mui/material';
+import { Calculate, Restaurant, FitnessCenter } from '@mui/icons-material';
 
 const DietPlanner = () => {
   const [formData, setFormData] = useState({
@@ -139,7 +139,7 @@ const DietPlanner = () => {
     <Box sx={{ 
       py: 6, 
       px: { xs: 2, md: 4 },
-      background: 'linear-gradient(to bottom, #f8f9fa, #ffffff)'
+      background: 'linear-gradient(to bottom, #f8f9fa, #ffffff)',marginTop: "80px"
     }}>
       <Container maxWidth="lg">
         <Typography variant="h3" sx={{ 
