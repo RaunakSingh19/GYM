@@ -36,7 +36,7 @@ const FeedbackList = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/feedback');
+        const response = await axios.get('http://localhost:5000/api/feedback','https://gym-itip.onrender.com/api/feedback');
         setFeedbacks(response.data);
       } catch (err) {
         setError('Failed to fetch feedback');
@@ -65,7 +65,7 @@ const FeedbackList = () => {
 
   const handleDeleteClick = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/feedback/${id}`);
+      await axios.delete(`http://localhost:5000/api/feedback/${id}`,`https://gym-itip.onrender.com/api/feedback/${id}`);
       setFeedbacks(feedbacks.filter(fb => fb._id !== id));
     } catch (err) {
       setError('Failed to delete feedback');
@@ -79,7 +79,7 @@ const FeedbackList = () => {
   const handleSubmitEdit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:5000/api/feedback/${editing}`, formData);
+      const response = await axios.put(`http://localhost:5000/api/feedback/${editing}`,`https://gym-itip.onrender.com/api/feedback/${editing}`, formData);
       setFeedbacks(feedbacks.map(fb => fb._id === editing ? response.data : fb));
       setEditing(null);
       setFormData({ name: '', location: '', feedback: '', phone: '' });

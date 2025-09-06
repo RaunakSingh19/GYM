@@ -25,7 +25,7 @@ const FeedbackCards = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/feedback');
+        const response = await axios.get('http://localhost:5000/api/feedback','https://gym-itip.onrender.com/api/feedback');
         setFeedbacks(response.data);
       } catch (err) {
         setError('Failed to fetch feedback.');

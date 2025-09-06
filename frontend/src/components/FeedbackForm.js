@@ -38,7 +38,7 @@ const FeedbackForm = () => {
 
     try {
       // Use localhost for now
-      await axios.post('https://gym-itip.onrender.com/api/feedback','http://localhost:5000/api/feedback', formData);
+      await axios.post('http://localhost:5000/api/feedback','https://gym-itip.onrender.com/api/feedback', formData);
       setSuccess(true);
       setFormData({ name: '', location: '', feedback: '', phone: '' });
     } catch (err) {
