@@ -1,315 +1,37 @@
-// // src/components/FeedbackList.js
-// import React, { useState, useEffect } from 'react';
-// import { 
-//   Container, 
-//   Paper, 
-//   Typography, 
-//   Table, 
-//   TableBody, 
-//   TableCell, 
-//   TableContainer, 
-//   TableHead, 
-//   TableRow, 
-//   Button, 
-//   TextField, 
-//   InputAdornment, 
-//   CircularProgress, 
-//   Alert, 
-//   Box 
-// } from '@mui/material';
-// import { Person, LocationOn, Message, Phone, Edit, Delete, Search } from '@mui/icons-material';
-// import axios from 'axios';
-// import API_BASE_URL from '../config/api';
-
-// const FeedbackList = () => {
-//   const [feedbacks, setFeedbacks] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState('');
-//   const [editing, setEditing] = useState(null);
-//   const [formData, setFormData] = useState({
-//     name: '',
-//     location: '',
-//     feedback: '',
-//     phone: ''
-//   });
-//   const [searchQuery, setSearchQuery] = useState('');
-
-//   useEffect(() => {
-//     const fetchFeedbacks = async () => {
-//       try {
-//         const response = await axios.get(`${API_BASE_URL}/api/feedback`);
-//         setFeedbacks(response.data);
-//       } catch (err) {
-//         setError('Failed to fetch feedback');
-//         console.error('Error fetching feedback:', err);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchFeedbacks();
-//   }, []);
-
-//   const handleSearch = (e) => {
-//     setSearchQuery(e.target.value.toLowerCase());
-//   };
-
-//   const handleEditClick = (feedback) => {
-//     setEditing(feedback._id);
-//     setFormData({
-//       name: feedback.name,
-//       location: feedback.location,
-//       feedback: feedback.feedback,
-//       phone: feedback.phone
-//     });
-//   };
-
-//   const handleDeleteClick = async (id) => {
-//     try {
-//       await axios.delete(`${API_BASE_URL}/api/feedback/${id}`);
-//       setFeedbacks(feedbacks.filter(fb => fb._id !== id));
-//     } catch (err) {
-//       setError('Failed to delete feedback');
-//     }
-//   };
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmitEdit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const response = await axios.put(`${API_BASE_URL}/api/feedback/${editing}`, formData);
-//       setFeedbacks(feedbacks.map(fb => fb._id === editing ? response.data : fb));
-//       setEditing(null);
-//       setFormData({ name: '', location: '', feedback: '', phone: '' });
-//     } catch (err) {
-//       setError('Failed to update feedback');
-//     }
-//   };
-
-//   // Filter feedbacks based on the search query
-//   const filteredFeedbacks = feedbacks.filter(feedback =>
-//     feedback.name.toLowerCase().includes(searchQuery) ||
-//     feedback.location.toLowerCase().includes(searchQuery) ||
-//     feedback.feedback.toLowerCase().includes(searchQuery)
-//   );
-
-//   return (
-//     <Container maxWidth="lg" sx={{ py: 4, marginTop: "80px" }}>
-//       <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
-//         <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: 'bold', mb: 3 }}>
-//           Feedbacks from our Users
-//         </Typography>
-
-//         {error && <Alert severity="error" sx={{ mb: 3 }}>{error}</Alert>}
-
-//         {/* Search Bar */}
-//         <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-//           <TextField
-//             label="Search Feedback"
-//             variant="outlined"
-//             fullWidth
-//             value={searchQuery}
-//             onChange={handleSearch}
-//             InputProps={{
-//               startAdornment: (
-//                 <InputAdornment position="start">
-//                   <Search />
-//                 </InputAdornment>
-//               ),
-//             }}
-//           />
-//         </Box>
-
-//         {loading ? (
-//           <CircularProgress size={50} sx={{ display: 'block', margin: 'auto' }} />
-//         ) : (
-//           <TableContainer component={Paper} elevation={3}>
-//             <Table sx={{ minWidth: 650 }} aria-label="feedback table">
-//               <TableHead>
-//                 <TableRow>
-//                   <TableCell>Feedback From</TableCell>
-//                   <TableCell>Location</TableCell>
-//                   <TableCell>Phone</TableCell>
-//                   <TableCell>Feedback</TableCell>
-//                   <TableCell>Actions</TableCell>
-//                 </TableRow>
-//               </TableHead>
-//               <TableBody>
-//                 {filteredFeedbacks.map((feedback) => (
-//                   <TableRow key={feedback._id}>
-//                     <TableCell>{feedback.name}</TableCell>
-//                     <TableCell>{feedback.location}</TableCell>
-//                     <TableCell>{feedback.phone}</TableCell>
-//                     <TableCell>{feedback.feedback}</TableCell>
-//                     <TableCell>
-//                       <Button
-//                         variant="outlined"
-//                         color="primary"
-//                         size="small"
-//                         sx={{ mr: 1 }}
-//                         startIcon={<Edit />}
-//                         onClick={() => handleEditClick(feedback)}
-//                       >
-//                         Edit
-//                       </Button>
-//                       <Button
-//                         variant="outlined"
-//                         color="secondary"
-//                         size="small"
-//                         startIcon={<Delete />}
-//                         onClick={() => handleDeleteClick(feedback._id)}
-//                       >
-//                         Delete
-//                       </Button>
-//                     </TableCell>
-//                   </TableRow>
-//                 ))}
-//               </TableBody>
-//             </Table>
-//           </TableContainer>
-//         )}
-
-//         {editing && (
-//           <Box component="form" onSubmit={handleSubmitEdit} sx={{ mt: 4 }}>
-//             <TextField
-//               fullWidth
-//               label="Your Name"
-//               name="name"
-//               value={formData.name}
-//               onChange={handleChange}
-//               margin="normal"
-//               required
-//               InputProps={{
-//                 startAdornment: (
-//                   <InputAdornment position="start">
-//                     <Person />
-//                   </InputAdornment>
-//                 ),
-//               }}
-//             />
-//             <TextField
-//               fullWidth
-//               label="Your Location"
-//               name="location"
-//               value={formData.location}
-//               onChange={handleChange}
-//               margin="normal"
-//               required
-//               InputProps={{
-//                 startAdornment: (
-//                   <InputAdornment position="start">
-//                     <LocationOn />
-//                   </InputAdornment>
-//                 ),
-//               }}
-//             />
-//             <TextField
-//               fullWidth
-//               label="Phone Number"
-//               name="phone"
-//               value={formData.phone}
-//               onChange={handleChange}
-//               margin="normal"
-//               required
-//               InputProps={{
-//                 startAdornment: (
-//                   <InputAdornment position="start">
-//                     <Phone />
-//                   </InputAdornment>
-//                 ),
-//               }}
-//             />
-//             <TextField
-//               fullWidth
-//               label="Your Feedback"
-//               name="feedback"
-//               value={formData.feedback}
-//               onChange={handleChange}
-//               margin="normal"
-//               required
-//               multiline
-//               rows={4}
-//               InputProps={{
-//                 startAdornment: (
-//                   <InputAdornment position="start">
-//                     <Message />
-//                   </InputAdornment>
-//                 ),
-//               }}
-//             />
-//             <Button
-//               variant="contained"
-//               color="primary"
-//               type="submit"
-//               sx={{ mt: 3 }}
-//             >
-//               Submit Edit
-//             </Button>
-//           </Box>
-//         )}
-//       </Paper>
-//     </Container>
-//   );
-// };
-
-// export default FeedbackList;
-
-// src/components/FeedbackList.js
-import React, { useState, useEffect } from 'react';
+// FeedbackCards.jsx
+import React, { useState, useEffect } from "react";
 import {
   Container,
-  Paper,
+  Card,
+  CardContent,
   Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Button,
-  TextField,
-  InputAdornment,
+  Grid,
+  Avatar,
+  Box,
   CircularProgress,
   Alert,
-  Box,
-} from '@mui/material';
-import {
-  Person,
-  LocationOn,
-  Message,
-  Phone,
-  Edit,
-  Delete,
-  Search,
-} from '@mui/icons-material';
-import axios from 'axios';
-import API_BASE_URL from '../config/api';
+  Rating,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
+import axios from "axios";
+import API_BASE_URL from "../config/api";
 
-const FeedbackList = () => {
+const FeedbackCards = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [editing, setEditing] = useState(null);
-  const [formData, setFormData] = useState({
-    name: '',
-    location: '',
-    feedback: '',
-    phone: '',
-  });
-  const [searchQuery, setSearchQuery] = useState('');
+  const [error, setError] = useState("");
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // Fetch feedbacks on mount
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/api/feedback`);
         setFeedbacks(response.data);
       } catch (err) {
-        setError('❌ Failed to fetch feedback. Please try again.');
-        console.error('Error fetching feedback:', err);
+        setError("Failed to fetch feedback.");
+        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -318,241 +40,210 @@ const FeedbackList = () => {
     fetchFeedbacks();
   }, []);
 
-  // Search handler
-  const handleSearch = (e) => setSearchQuery(e.target.value.toLowerCase());
-
-  // Edit handler
-  const handleEditClick = (feedback) => {
-    setEditing(feedback._id);
-    setFormData({
-      name: feedback.name,
-      location: feedback.location,
-      feedback: feedback.feedback,
-      phone: feedback.phone,
-    });
-  };
-
-  // Delete handler
-  const handleDeleteClick = async (id) => {
-    try {
-      await axios.delete(`${API_BASE_URL}/api/feedback/${id}`);
-      setFeedbacks(feedbacks.filter((fb) => fb._id !== id));
-    } catch (err) {
-      setError('❌ Failed to delete feedback');
+  // Generate gradient color from name
+  const stringToColor = (string) => {
+    let hash = 0;
+    for (let i = 0; i < string.length; i++) {
+      hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
+    const hue = hash % 360;
+    return `linear-gradient(135deg, hsl(${hue}, 70%, 65%), hsl(${hue}, 70%, 45%))`;
   };
-
-  // Input change handler
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  // Submit edited feedback
-  const handleSubmitEdit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const response = await axios.put(
-        `${API_BASE_URL}/api/feedback/${editing}`,
-        formData
-      );
-      setFeedbacks(
-        feedbacks.map((fb) => (fb._id === editing ? response.data : fb))
-      );
-      setEditing(null);
-      setFormData({ name: '', location: '', feedback: '', phone: '' });
-    } catch (err) {
-      setError('❌ Failed to update feedback');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Filtered feedback list
-  const filteredFeedbacks = feedbacks.filter(
-    (feedback) =>
-      feedback.name.toLowerCase().includes(searchQuery) ||
-      feedback.location.toLowerCase().includes(searchQuery) ||
-      feedback.feedback.toLowerCase().includes(searchQuery)
-  );
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4, marginTop: '80px' }}>
-      <Paper elevation={3} sx={{ p: 4, borderRadius: 2 }}>
-        <Typography
-          variant="h4"
-          gutterBottom
-          align="center"
-          sx={{ fontWeight: 'bold', mb: 3 }}
-        >
-          User Feedbacks
-        </Typography>
+    <Container
+      maxWidth="lg"
+      sx={{
+        py: { xs: 6, md: 10 },
+        px: { xs: 2, sm: 3 },
+      }}
+    >
+      {/* Title */}
+      <Typography
+        variant="h3"
+        align="center"
+        sx={{
+          fontWeight: "bold",
+          background: "linear-gradient(45deg, #1a237e, #3949ab)",
+          backgroundClip: "text",
+          WebkitBackgroundClip: "text",
+          color: "transparent",
+          mb: 6,
+          fontSize: { xs: "2rem", md: "2.5rem" },
+        }}
+      >
+        Customer Reviews
+      </Typography>
 
-        {/* Error Message */}
-        {error && <Alert severity="error" sx={{ mb: 3 }}>{error}</Alert>}
+      {/* Error */}
+      {error && (
+        <Alert severity="error" sx={{ mb: 4, borderRadius: 2 }}>
+          {error}
+        </Alert>
+      )}
 
-        {/* Search Bar */}
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-          <TextField
-            label="Search Feedback"
-            variant="outlined"
-            fullWidth
-            value={searchQuery}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-            }}
-          />
+      {/* Loader */}
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 10 }}>
+          <CircularProgress size={60} thickness={4} sx={{ color: "#3949ab" }} />
         </Box>
-
-        {/* Loading State */}
-        {loading ? (
-          <CircularProgress size={50} sx={{ display: 'block', mx: 'auto' }} />
-        ) : filteredFeedbacks.length === 0 ? (
-          <Typography align="center" sx={{ mt: 3, color: 'text.secondary' }}>
-            No feedback found.
-          </Typography>
-        ) : (
-          <TableContainer component={Paper} elevation={2}>
-            <Table sx={{ minWidth: 650 }} aria-label="feedback table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Feedback From</TableCell>
-                  <TableCell>Location</TableCell>
-                  <TableCell>Phone</TableCell>
-                  <TableCell>Feedback</TableCell>
-                  <TableCell align="center">Actions</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filteredFeedbacks.map((feedback) => (
-                  <TableRow key={feedback._id}>
-                    <TableCell>{feedback.name}</TableCell>
-                    <TableCell>{feedback.location}</TableCell>
-                    <TableCell>{feedback.phone}</TableCell>
-                    <TableCell>{feedback.feedback}</TableCell>
-                    <TableCell align="center">
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        size="small"
-                        sx={{ mr: 1 }}
-                        startIcon={<Edit />}
-                        onClick={() => handleEditClick(feedback)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        variant="outlined"
-                        color="secondary"
-                        size="small"
-                        startIcon={<Delete />}
-                        onClick={() => handleDeleteClick(feedback._id)}
-                      >
-                        Delete
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        )}
-
-        {/* Edit Form */}
-        {editing && (
-          <Box component="form" onSubmit={handleSubmitEdit} sx={{ mt: 4 }}>
-            <Typography
-              variant="h6"
-              gutterBottom
-              sx={{ fontWeight: 'bold', mb: 2 }}
+      ) : (
+        <Grid
+          container
+          spacing={4}
+          sx={{
+            justifyContent: "center",
+            alignItems: "stretch",
+          }}
+        >
+          {feedbacks.map((fb) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={fb._id}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "stretch",
+              }}
             >
-              Edit Feedback
-            </Typography>
+              <Card
+                sx={{
+                  borderRadius: 4,
+                  height: "100%",
+                  maxWidth: 360,
+                  width: "100%",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+                  transition: "all 0.3s ease",
+                  background: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  "&:hover": {
+                    boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
+                    transform: "translateY(-6px)",
+                  },
+                }}
+              >
+                {/* Top Accent Bar */}
+                <Box
+                  sx={{
+                    height: 6,
+                    background: "linear-gradient(90deg, #3949ab, #1a237e)",
+                    borderTopLeftRadius: 16,
+                    borderTopRightRadius: 16,
+                  }}
+                />
 
-            <TextField
-              fullWidth
-              label="Your Name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              margin="normal"
-              required
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Person />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              fullWidth
-              label="Your Location"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-              margin="normal"
-              required
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LocationOn />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              fullWidth
-              label="Phone Number"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              margin="normal"
-              required
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Phone />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              fullWidth
-              label="Your Feedback"
-              name="feedback"
-              value={formData.feedback}
-              onChange={handleChange}
-              margin="normal"
-              required
-              multiline
-              rows={4}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Message />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              sx={{ mt: 3 }}
-              disabled={loading}
-            >
-              {loading ? <CircularProgress size={22} /> : 'Update Feedback'}
-            </Button>
-          </Box>
-        )}
-      </Paper>
+                <CardContent sx={{ p: 3 }}>
+                  {/* User Info */}
+                  <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+                    <Avatar
+                      sx={{
+                        background: stringToColor(fb.name || "User"),
+                        width: 56,
+                        height: 56,
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                        mr: 2,
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+                      }}
+                    >
+                      {fb.name?.charAt(0).toUpperCase()}
+                    </Avatar>
+                    <Box>
+                      <Typography
+                        variant="subtitle1"
+                        fontWeight="600"
+                        sx={{ color: "#1a237e" }}
+                      >
+                        {fb.name || "Anonymous"}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: "text.secondary",
+                          display: "flex",
+                          alignItems: "center",
+                          mt: 0.5,
+                        }}
+                      >
+                        <Box
+                          component="span"
+                          sx={{
+                            fontSize: "0.7rem",
+                            mr: 1,
+                          }}
+                        >
+                          📍
+                        </Box>
+                        {fb.location || "Unknown location"}
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  {/* Rating */}
+                  <Rating
+                    name="read-only"
+                    value={fb.rating || 5}
+                    readOnly
+                    size={isMobile ? "small" : "medium"}
+                    sx={{
+                      color: "#ffb400",
+                      mb: 2,
+                    }}
+                  />
+
+                  {/* Feedback */}
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      mb: 2,
+                      lineHeight: 1.6,
+                      color: "text.primary",
+                      fontStyle: "italic",
+                      position: "relative",
+                      pl: 2,
+                      pr: 1,
+                      wordBreak: "break-word",
+                      overflowWrap: "anywhere",
+                      "&:before": {
+                        content: '"“"',
+                        position: "absolute",
+                        left: 0,
+                        top: -10,
+                        fontSize: "3rem",
+                        color: "#e0e0e0",
+                        fontFamily: "Georgia, serif",
+                      },
+                    }}
+                  >
+                    {fb.feedback}
+                  </Typography>
+
+                  {/* Decorative Quote */}
+                  <Box
+                    sx={{
+                      textAlign: "right",
+                      color: "#f5f5f5",
+                      fontSize: "4rem",
+                      lineHeight: 1,
+                      mt: 1,
+                      fontFamily: "Georgia, serif",
+                    }}
+                  >
+                    ”
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </Container>
   );
 };
 
-export default FeedbackList;
+export default FeedbackCards;
