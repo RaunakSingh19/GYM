@@ -14,6 +14,8 @@ import {
   useMediaQuery
 } from '@mui/material';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
+
 
 const FeedbackCards = () => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -25,7 +27,7 @@ const FeedbackCards = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/feedback','https://gym-itip.onrender.com/api/feedback');
+        const response = await axios.get(`${API_BASE_URL}/api/feedback`);
         setFeedbacks(response.data);
       } catch (err) {
         setError('Failed to fetch feedback.');

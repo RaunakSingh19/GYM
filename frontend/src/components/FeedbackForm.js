@@ -12,6 +12,8 @@ import {
 } from '@mui/material';
 import { Person, LocationOn, Message, Phone } from '@mui/icons-material';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
+
 // import FeedbackCards from './FeedbackCards';
 
 const FeedbackForm = () => {
@@ -38,7 +40,7 @@ const FeedbackForm = () => {
 
     try {
       // Use localhost for now
-      await axios.post('http://localhost:5000/api/feedback','https://gym-itip.onrender.com/api/feedback', formData);
+      await axios.post(`${API_BASE_URL}/api/feedback`, formData);
       setSuccess(true);
       setFormData({ name: '', location: '', feedback: '', phone: '' });
     } catch (err) {
