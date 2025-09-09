@@ -80,12 +80,12 @@ app.use(cors({
       return callback(new Error("CORS not allowed"));
     }
   },
-  methods: ["GET", "POST", "OPTIONS"],
+  methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
   credentials: true,
 }));
 
 // Explicitly handle preflight requests
-app.options('*', cors());
+app.options('*', cors()); // adding new ||  you can uncomment this and comment other if not working
 
 // ============================
 // Middleware
