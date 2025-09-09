@@ -61,7 +61,9 @@ connectDB();
 const allowedOrigins = [
   'http://localhost:3000',              // React Dev
   'http://localhost:5173',              // Vite Dev (if you ever use Vite)
-  'https://gym-rose-alpha.vercel.app'   // Production Frontend
+  'https://gym-five-omega.vercel.app',  // Production Frontend
+  'https://gym-git-main-raunaksingh142004-gmailcoms-projects.vercel.app',   // Production Frontend
+  'https://gym-pzdbbia20-raunaksingh142004-gmailcoms-projects.vercel.app',   // Production Frontend
 ];
 
 // Dynamic origin check
