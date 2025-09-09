@@ -46,19 +46,42 @@ const Membership = () => {
     ],
   ];
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const fetchCurrencyData = async () => {
+  //     try {
+  //       // Detect user location & currency
+  //       const geoRes = await fetch("https://ipapi.co/json/");
+  //       const geoData = await geoRes.json();
+  //       const userCurrency = geoData.currency || "USD";
+  //       setCurrency(userCurrency);
+
+  //       // Get exchange rate from USD
+  //       const rateRes = await fetch("https://api.exchangerate-api.com/v4/latest/USD");
+  //       const rateData = await rateRes.json();
+  //       const rate = rateData.rates[userCurrency] || 1;
+  //       setExchangeRate(rate);
+  //     } catch (error) {
+  //       console.error("Currency detection failed:", error);
+  //       setCurrency("USD");
+  //       setExchangeRate(1);
+  //     }
+  //   };
+
+  //   fetchCurrencyData();
+  // }, []);
+useEffect(() => {
     const fetchCurrencyData = async () => {
       try {
-        // Detect user location & currency
-        const geoRes = await fetch("https://ipapi.co/json/");
+        // Use a more reliable geolocation API
+        const geoRes = await fetch("https://ipgeolocation.abstractapi.com/v1/?api_key=YOUR_ABSTRACT_API_KEY");
         const geoData = await geoRes.json();
-        const userCurrency = geoData.currency || "USD";
+        const userCurrency = geoData.currency.code || "USD";
         setCurrency(userCurrency);
 
-        // Get exchange rate from USD
-        const rateRes = await fetch("https://api.exchangerate-api.com/v4/latest/USD");
+        // Fetch exchange rate from USD
+        const rateRes = await fetch("https://exchange-rates.abstractapi.com/v1/?api_key=YOUR_ABSTRACT_API_KEY&base=USD");
         const rateData = await rateRes.json();
-        const rate = rateData.rates[userCurrency] || 1;
+        const rate = rateData.exchange_rates[userCurrency] || 1;
         setExchangeRate(rate);
       } catch (error) {
         console.error("Currency detection failed:", error);
@@ -69,7 +92,6 @@ const Membership = () => {
 
     fetchCurrencyData();
   }, []);
-
   const getPrice = (usdPrice) => {
     const price = usdPrice * exchangeRate;
     return new Intl.NumberFormat(undefined, {
